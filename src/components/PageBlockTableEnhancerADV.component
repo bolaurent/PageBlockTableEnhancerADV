@@ -29,11 +29,13 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    
    <apex:attribute type="String" required="true" name="targetPbTableIds" description="A comma seperated list of Ids of target pageblock table" />
    <apex:attribute type="boolean" name="paginate" description="assign true if you want to use the pagination feature,default value is true" default="true"/>
+   <apex:attribute type="String" name="scrollY" description="Enable vertical scrolling" default=""/>
    <apex:attribute type="Integer" name="defaultPageSize" description="Default page size when pagination is implemented"/>
    <apex:attribute type="String" name="pageSizeOptions" description="A comma seperated list of integer values that will displayed as dropdown for page size"/>
    <apex:attribute name="noConflict" type="boolean" default="true" description="initiates jquery with noConflict so that jquery doesnt conflicts with standard components, by default it is set to true"/>
    <apex:attribute type="boolean" name="enableExport" description="Set this value to true if you want to display the export toolbar" default="true"/>
    <apex:attribute type="String" name="exportFileName" description="File name to used for the files exported from table"/>
+   <apex:attribute type="String" name="columnDefs" description="Set column definition initialisation properties"/>
    
    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"/>
    <apex:includeScript value="{!URLFOR($Resource.PageBlockTableEnhancerADVResources,'jquery.dataTables.js')}"/>
@@ -75,6 +77,8 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                             "bJQueryUI": true,
                             "aaSorting": [],
                             "bPaginate" : {!paginate},
+                            "columnDefs" : {!columnDefs},
+                            "sScrollY" : "{!scrollY}",
                             "bDestroy": true,
                             "sPaginationType": "full_numbers",
                             "sDom": '<T><"ui-helper-clearfix dtExport"><><"H"lfr>t<"F"ip>',
